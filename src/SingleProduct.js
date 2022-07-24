@@ -18,7 +18,7 @@ const SingleProduct = ({ history, match, user, setUser }) => {
 		axios(
 			`https://vend-o-vit.herokuapp.com/api/v1/products/${match.params.id}`
 		).then((res) => setData(res.data.data))
-	}, [])
+	}, [match.params.id])
 
 	const handleBook = () => {
 		if (user === undefined) {

@@ -28,7 +28,7 @@ const Dashboard = ({ user, setUser, filterString }) => {
 					setDisplayData(data.data.data)
 				})
 		}
-	}, [])
+	}, [data])
 
 	useEffect(() => {
 		if (data) {
@@ -37,7 +37,7 @@ const Dashboard = ({ user, setUser, filterString }) => {
 			)
 			setDisplayData({ products: filteredProds })
 		}
-	}, [filterString])
+	}, [filterString, data])
 
 	return (
 		<StyledContainer>

@@ -8,7 +8,7 @@ import SingleProduct from './SingleProduct'
 import UserProducts from './UserProducts'
 
 function App() {
-	// const [isLoggedIn, setLoggedIn] = useState(false)
+	const [isLoggedIn, setLoggedIn] = useState(false)
 	const [user, setUser] = useState()
 	const [isFetching, setFetching] = useState(false)
 	const [filterString, setFilter] = useState('')
@@ -39,6 +39,7 @@ function App() {
 				{ withCredentials: true }
 			)
 			console.log(data)
+			setLoggedIn(false)
 		}
 		fetchUser()
 		setFetching(false)

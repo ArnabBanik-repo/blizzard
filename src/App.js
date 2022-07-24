@@ -15,7 +15,7 @@ function App() {
 	useEffect(() => {
 		const fetchUser = () => {
 			setFetching(true)
-			fetch('/auth/login/success', {
+			fetch('https://vend-o-vit.herokuapp.com/auth/login/success', {
 				method: 'GET',
 				credentials: 'include',
 				headers: {

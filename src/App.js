@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import Dashboard from './Dashboard'
@@ -13,26 +14,31 @@ function App() {
 	const [filterString, setFilter] = useState('')
 
 	useEffect(() => {
-		const fetchUser = () => {
+		const fetchUser = async () => {
 			setFetching(true)
-			fetch('https://vend-o-vit.herokuapp.com/auth/login/success', {
-				method: 'GET',
-				credentials: 'include',
-				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-					'Access-Control-Allow-Credentials': true,
-				},
-			})
-				.then((res) => {
-					if (res.status === 200) return res.json()
-					throw new Error('authentication failed')
-				})
-				.then((data) => {
-					setUser(data.user)
-					setLoggedIn(true)
-				})
-				.catch((err) => console.log(err))
+			// fetch('https://vend-o-vit.herokuapp.com/auth/login/success', {
+			// 	method: 'GET',
+			// 	credentials: 'include',
+			// 	headers: {
+			// 		Accept: 'application/json',
+			// 		'Content-Type': 'application/json',
+			// 		'Access-Control-Allow-Credentials': true,
+			// 	},
+			// })
+			// 	.then((res) => {
+			// 		if (res.status === 200) return res.json()
+			// 		throw new Error('authentication failed')
+			// 	})
+			// 	.then((data) => {
+			// 		setUser(data.user)
+			// 		setLoggedIn(true)
+			// 	})
+			// 	.catch((err) => console.log(err))
+			const { data } = await axios.get(
+				'https://vend-o-vit.herokuapp.com/auth/login/success',
+				{ withCredentials: true }
+			)
+			console.log(data)
 		}
 		fetchUser()
 		setFetching(false)
